@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Place Module for HBNB project """
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, Integer,\
+from sqlalchemy import Column, Integer, \
     String, DateTime, ForeignKey, Float, Table
 from sqlalchemy.orm import relationship
 import os
@@ -19,6 +19,7 @@ association_table = Table('place_amenity',
                                  primary_key=True,
                                  nullable=False),
                           )
+
 
 class Place(BaseModel, Base):
     """ A place to stay """
@@ -87,5 +88,5 @@ class Place(BaseModel, Base):
             '''Amenities id setter'''
 
             from models.amenity import Amenity
-            if type(obj) == Amenity:
+            if type(obj) is Amenity:
                 self.amenity_ids.append(obj.id)
