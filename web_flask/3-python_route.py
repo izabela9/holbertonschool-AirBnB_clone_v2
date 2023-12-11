@@ -38,7 +38,8 @@ def python(text="so cool"):
     """
     dynamic route
     """
-    text = text.replace("_", " ")
+    if text:
+        return "Python" + text.replace("_", " ")
     return "Python " + text
 
 
