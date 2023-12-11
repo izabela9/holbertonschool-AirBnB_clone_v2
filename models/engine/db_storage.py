@@ -14,7 +14,6 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
-
 class DBStorage:
     '''
     DBStorage class
@@ -36,7 +35,7 @@ class DBStorage:
         self.__engine = create_engine('mysql+mysqldb://' +
                                       f'{getenv("HBNB_MYSQL_USER")}:' +
                                       f'{getenv("HBNB_MYSQL_PWD")}@' +
-                                      f'{getenv("HBNB_MYSQL_HOST")}:'
+                                      f'{getenv("HBNB_MYSQL_HOST")}:' +
                                       f'3306/{getenv("HBNB_MYSQL_DB")}',
                                       pool_pre_ping=True)
 
