@@ -1,35 +1,35 @@
 #!/usr/bin/python3
 """
-Module to initiate a flask
+Creating an app
 """
 from flask import Flask, render_template
-from models import storage, State
+from models import storage
+from models.state import State
+
 
 app = Flask(__name__)
 
 
 @app.teardown_appcontext
-def close_all(error):
+def close_db(error):
     """
-    func to remove sqlalchemy session
+    Simple function
     """
     storage.close()
 
 
 @app.route('/states', strict_slashes=False)
 @app.route('/states/<id>', strict_slashes=False)
-def cities_list(id=None):
+def states_list(id=None):
     """
-    States display
+    dynamic routing
     """
-    states = [state for state in storage.all(State).values()]
-    hasId = False
-    if id:
-        states = [state for state in states if state.to_dict()["id"] == id]
-        if len(states) != 0:
-            hasId = True
-    print(hasId)
-    return render_template('9-states.html', states=states, id=id, hasId=hasId)
+    valid_id = False
+    data = [value for value in storage.all(State).values()]
+    if id in [state.to_dict()['id'] for state in data]:
+        valid_id = True
+    return render_template('9-states.html', data=data,
+                           id=id, valid_id=valid_id)
 
 
 if __name__ == '__main__':
