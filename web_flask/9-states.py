@@ -22,8 +22,8 @@ def cities_list(id=None):
     """
     States display
     """
-    states = [state for state in storage.all(State).values()]
-    print(states[0].to_dict()['id'])
+    if storage.all(State).values():
+        states = [state for state in storage.all(State).values()]
     hasId = False
     if id:
         states = [state for state in states if state.to_dict()["id"] == id]
