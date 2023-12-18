@@ -25,12 +25,12 @@ def cities_list(id=None):
     states = [state for state in storage.all(State).values()]
     print(states[0].to_dict()['id'])
     hasId = False
-    if id :
+    if id:
         states = [state for state in states if state.to_dict()["id"] == id]
         if len(states) != 0:
             hasId = True
     print(hasId)
-    return render_template('9-states.html', states=states, id=id, hasId= hasId)
+    return render_template('9-states.html', states=states, id=id, hasId=hasId)
 
 
 if __name__ == '__main__':
